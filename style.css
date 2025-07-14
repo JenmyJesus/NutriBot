@@ -1,0 +1,547 @@
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* Body */
+body {
+  background: linear-gradient(to right, #dce35b, #45b649);
+  color: #222;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  overflow-y: auto;
+  transition: background 0.4s ease, color 0.4s ease;
+}
+
+/* Contenedor principal */
+.container {
+  background: white;
+  padding: 2rem;
+  border-radius: 1.5rem;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  max-width: 400px;
+  width: 100%;
+  text-align: center;
+  position: relative;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeIn 0.5s forwards;
+  transition: background 0.4s ease, box-shadow 0.4s ease, opacity 0.4s ease, transform 0.4s ease;
+}
+
+/* Animación de entrada para el contenedor */
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Textos */
+.logo {
+  color: #45b649;
+  font-weight: bold;
+}
+
+h1 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+h3 {
+  margin: 1.5rem 0 1rem;
+}
+
+p {
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+
+/* Botones generales */
+.btn {
+  padding: 0.75rem;
+  border: none;
+  border-radius: 0.75rem;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Aplicado aquí para todos los botones */
+}
+
+.btn i {
+  font-size: 1.2rem;
+}
+
+.btn.small {
+  padding: 0.5rem 0.75rem;
+  font-size: 0.9rem;
+  border-radius: 0.75rem;
+  background-color: #e0e0e0;
+  color: #333;
+  box-shadow: none; /* Los pequeños no necesitan sombra si no la quieres */
+}
+
+/* Botones específicos */
+.google {
+  background-color: #db4437;
+  color: white;
+}
+
+.google:hover {
+  background-color: #c1351d;
+}
+
+.facebook {
+  background-color: #1877f2;
+  color: white;
+}
+
+.facebook:hover {
+  background-color: #145ddb;
+}
+
+.microsoft {
+  background-color: #2f2f2f;
+  color: white;
+}
+
+.microsoft:hover {
+  background-color: #1e1e1e;
+}
+
+.back {
+  background-color: #999;
+  color: white;
+  margin-top: 1.5rem;
+}
+
+.back:hover {
+  background-color: #777;
+}
+
+.btn.guardar {
+  background-color: #4caf50;
+  color: white;
+}
+
+.btn.guardar:hover {
+  background-color: #388e3c;
+}
+
+.btn.borrar {
+  background-color: #f44336;
+  color: white;
+}
+
+.btn.borrar:hover {
+  background-color: #d32f2f;
+}
+
+.btn.cancelar {
+  background-color: #757575;
+  color: white;
+}
+
+.btn.cancelar:hover {
+  background-color: #5c5c5c;
+}
+
+/* Botón modo oscuro */
+.dark-toggle {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  z-index: 999;
+  background-color: #222;
+  color: white;
+  font-size: 0.9rem;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease, color 0.3s ease; /* Transición específica */
+}
+
+/* Menú principal */
+.menu {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.menu button {
+  padding: 1rem;
+  border-radius: 1rem;
+  background-color: #45b649;
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.menu button:hover {
+  background-color: #3a9d44;
+}
+
+/* Formulario */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+input,
+select,
+textarea { /* Consolidado textarea aquí */
+  padding: 0.7rem;
+  border: 1px solid #ccc;
+  border-radius: 0.75rem;
+  font-size: 1rem;
+  transition: border-color 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+}
+
+label {
+  text-align: left;
+  margin-top: 1rem;
+  font-weight: bold;
+}
+
+textarea {
+  width: 100%;
+  resize: none;
+  background-color: #f9f9f9;
+}
+
+/* Chat */
+.chat-box {
+  border: 1px solid #ccc;
+  border-radius: 1rem;
+  height: 300px;
+  overflow-y: auto;
+  padding: 1rem;
+  margin: 1rem 0;
+  background-color: #f5f5f5;
+  display: flex;
+  flex-direction: column;
+  transition: background-color 0.4s ease, border-color 0.4s ease;
+}
+
+.message {
+  margin-bottom: 0.8rem;
+  padding: 0.8rem;
+  border-radius: 1rem;
+  max-width: 80%;
+  word-wrap: break-word;
+}
+
+.user {
+  background-color: #dcf8c6;
+  align-self: flex-end;
+  text-align: right;
+  margin-left: auto;
+}
+
+.bot {
+  background-color: #e2e2e2;
+  align-self: flex-start;
+  margin-right: auto;
+}
+
+/* Alergias */
+.alergias-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  justify-content: center;
+}
+
+.alergias-list .alergia-btn {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #aaa;
+  border-radius: 1rem;
+  background-color: #eee;
+  cursor: pointer;
+  user-select: none;
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+.alergias-list .alergia-btn.active {
+  background-color: #f44336;
+  color: white;
+  border-color: #d32f2f;
+}
+
+.alergia-activa {
+  background-color: #45b649 !important;
+  color: white !important;
+}
+
+/* Botones agrupados */
+.botones-row {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.botones-row button,
+.cancelar-btn button {
+  flex: 1;
+  min-width: 140px;
+  max-width: 180px;
+}
+
+.cancelar-btn {
+  display: flex;
+  justify-content: center;
+  margin-top: 1.5rem;
+}
+
+/* Ocultar pantallas */
+.hidden {
+  display: none;
+}
+
+/* Modo oscuro */
+/* Botón modo oscuro reubicado y rediseñado */
+.dark-toggle {
+  position: absolute;
+  top: -2rem;
+  right: 0.5rem;
+  background-color: #45b649;
+  color: white;
+  font-size: 0.75rem;
+  padding: 0.4rem 0.8rem;
+  border-radius: 1rem;
+  border: none;
+  z-index: 10;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.dark-toggle:hover {
+  background-color: #3a9d44;
+}
+
+body.dark .dark-toggle {
+  background-color: #333;
+  color: white;
+  border: 1px solid #555;
+}
+
+body.dark .dark-toggle:hover {
+  background-color: #444;
+}
+.container {
+  position: relative; /* Asegura que el botón se posicione dentro del contenedor */
+  padding-top: 3rem; /* Da espacio arriba para el botón */
+}
+
+
+/* Plan semanal */
+.plan-semanal {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.dia {
+  background-color: #f8f8f8;
+  padding: 1rem;
+  border-radius: 1rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  transition: background-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+.dia h3 {
+  color: #45b649;
+  margin-bottom: 0.5rem;
+}
+
+.comida {
+  margin: 0.5rem 0;
+  padding: 10px;
+  border-left: 4px solid #47b583;
+  background: #fff;
+  border-radius: 8px;
+  transition: background 0.3s ease, border-left-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.comida:hover {
+  background: #e9fdf1;
+  border-left-color: #3da56a;
+}
+
+.comida img {
+  width: 100%;
+  max-width: 350px;
+  height: auto;
+  border-radius: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+.comida-img {
+  width: 100%;
+  max-width: 300px;
+  height: auto;
+  border-radius: 10px;
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+
+/* Carrusel de fechas */
+.fecha-carrusel {
+  display: flex;
+  overflow-x: auto;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  padding: 0.5rem 0;
+  scroll-snap-type: x mandatory;
+  justify-content: center;
+}
+
+.fecha-item {
+  flex: 0 0 auto;
+  background-color: #e0e0e0;
+  padding: 0.75rem 1rem;
+  border-radius: 1rem;
+  font-weight: bold;
+  scroll-snap-align: center;
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+}
+
+.fecha-item.hoy {
+  background-color: #45b649;
+  color: white;
+  transform: scale(1.2);
+}
+
+/* Plan del día */
+.plan-dia {
+  margin-bottom: 30px;
+  padding: 15px;
+  border-radius: 10px;
+  background: #f4f4f4;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.4s ease;
+}
+
+.plan-dia:hover {
+  transform: scale(1.02);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.plan-dia h3 {
+  font-size: 1.3rem;
+  color: #3da56a;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.nutri-info {
+  font-size: 0.95rem;
+  padding: 0.4rem 0.8rem;
+  border-radius: 8px;
+  background-color: #e0f7ec;
+  color: #2e7d32;
+  margin-top: 0.5rem;
+  display: inline-block;
+}
+
+.semana-bloque {
+  border-left: 5px solid #4caf50;
+  padding-left: 1rem;
+  background: #f9f9f9;
+  border-radius: 1rem;
+  margin-top: 30px;
+  transition: background 0.4s ease;
+}
+
+.valor-nutricional p {
+  display: block;
+  margin: 0.2rem 0;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .container {
+    padding: 1.5rem;
+  }
+
+  h1 {
+    font-size: 1.6rem;
+  }
+
+  .btn,
+  .menu button,
+  input,
+  select,
+  textarea { /* Incluido textarea en el responsive */
+    font-size: 0.95rem;
+  }
+}
+.dark-toggle {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  z-index: 999;
+  background-color: #eeeeee;
+  color: #333;
+  font-size: 0.85rem;
+  padding: 0.4rem 0.8rem;
+  border: none;
+  border-radius: 1rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.dark-toggle:hover {
+  background-color: #dddddd;
+}
+
+body.dark .dark-toggle {
+  background-color: #333;
+  color: #fff;
+  border: 1px solid #555;
+}
+body.dark .dark-toggle:hover {
+  background-color: #444;
+}
+.nutri-info {
+  font-size: 0.95rem;
+  padding: 0.8rem 1rem;
+  border-radius: 10px;
+  background-color: #e0f7ec;
+  color: #2e7d32;
+  margin-top: 0.7rem;
+  text-align: justify;
+  line-height: 1.4;
+  overflow: hidden;
+  word-wrap: break-word;
+}
+
+.nutri-info ol {
+  padding-left: 1.2rem;
+  margin: 0.5rem 0 0;
+}
+
+.nutri-info li {
+  margin-bottom: 0.5rem;
+}

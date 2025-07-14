@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NutriBot - Tu asistente nutricional</title>
+  <link rel="stylesheet" href="style.css" />
+  <script defer src="script.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+
+  <!-- Pantalla inicial con formulario -->
+  <div class="container" id="formScreen">
+    <h2>Hola 👋, soy <span class="logo">NutriBot</span></h2>
+    <p>¿Qué deseas hacer hoy?</p>
+
+    <form id="datosForm">
+      <input type="text" placeholder="Nombre" required id="nombre" aria-label="Nombre" />
+      <input type="number" placeholder="Edad (años)" required id="edad" min="1" aria-label="Edad" />
+      <input type="number" placeholder="Peso (kg)" required id="peso" min="1" aria-label="Peso" />
+      <input type="number" placeholder="Talla (cm)" required id="talla" min="1" aria-label="Talla" />
+
+      <label for="actividad">Actividad física:</label>
+      <select id="actividad" required aria-label="Actividad física">
+        <option value="">Selecciona</option>
+        <option value="baja">Baja</option>
+        <option value="moderada">Moderada</option>
+        <option value="alta">Alta</option>
+      </select>
+
+      <label>Alergias alimentarias:</label>
+      <div id="alergiasBtns" class="alergias-list"></div>
+
+      <div class="botones-row">
+        <button type="submit" class="btn guardar">✅ Guardar datos</button>
+        <button type="button" onclick="reiniciarTodo()" class="btn borrar">🗑️ Borrar mis datos</button>
+      </div>
+    </form>
+
+    <div class="cancelar-btn">
+      <button type="button" onclick="reiniciarTodo()" class="btn cancelar">❌ Cancelar</button>
+    </div>
+  </div>
+
+  <!-- Pantalla principal luego de guardar datos -->
+  <div class="container hidden" id="mainApp">
+    <h2 id="saludoPrincipal">Hola 👋, soy <span class="logo">NutriBot</span></h2>
+    <p>¿Qué deseas hacer hoy?</p>
+
+    <div class="fecha-carrusel" id="fechaCarrusel"></div>
+    <canvas id="graficoIMC" width="350" height="200" style="margin-top: 1.5rem;"></canvas>
+    <div class="menu" id="mainMenu">
+
+
+      <button type="button" onclick="showChat()">💬 Preguntar sobre nutrición</button>
+      <button type="button" onclick="mostrarOpcionesPlan()">🍽️ Plan de comidas semanal</button>
+      <button type="button" onclick="reiniciarTodo()" class="btn back">🗑️ Borrar mis datos</button>
+    </div>
+
+    <div class="menu hidden" id="planOpciones">
+      <p><strong>¿Cómo deseas armar tu plan semanal?</strong></p>
+      <button type="button" onclick="generarPlanAutomatico()">🤖 Que NutriBot lo arme por mí</button>
+      <button type="button" onclick="irAPlanPersonalizado()">📝 Armar mi propio plan con lo que tengo</button>
+      <button type="button" class="btn cancelar" onclick="volverAlMenu()">⬅️ Volver</button>
+    </div>
+  </div>
+
+  <!-- Pantalla del chatbot -->
+  <div class="container hidden" id="chatScreen">
+    <h2>🤖 Chat con NutriBot</h2>
+    <div id="chatBox" class="chat-box"></div>
+    <form id="chatForm">
+      <input type="text" id="userInput" placeholder="Haz tu pregunta..." required aria-label="Pregunta de usuario" />
+      <button type="submit" class="btn google">Enviar</button>
+    </form>
+    <button type="button" class="btn back" onclick="volverAlMenu()">⬅️ Volver al Menú</button>
+  </div>
+
+  <!-- Pantalla: Armar tu propio plan personalizado -->
+  <div class="container hidden" id="planPersonalizadoScreen">
+    <h2>📝 Arma tu propio plan</h2>
+    <p>Escribe los alimentos que tienes disponibles:</p>
+
+    <textarea id="listaAlimentos" placeholder="Ejemplo: arroz, pollo, tomate, huevo, leche..." rows="5"></textarea>
+
+    <div class="botones-row" style="margin-top: 1rem;">
+      <button class="btn guardar" onclick="generarPlanConAlimentos()">✅ Generar plan semanal</button>
+      <button class="btn borrar" onclick="guardarPlanLocal()">📀 Guardar plan</button>
+      <button class="btn cancelar" onclick="descargarPlanPDF()">📄 Descargar PDF</button>
+    </div>
+
+    <button class="btn back" style="margin-top: 1.5rem;" onclick="volverAlMenu()">⬅️ Volver</button>
+
+    <div id="resultadoPlanPersonalizado" class="chat-box" style="margin-top: 1.5rem;"></div>
+  </div>
+
+  <!-- Pantalla generada automáticamente -->
+  <div class="container hidden" id="planAutomaticoScreen">
+    <h2>🥗 Tu plan semanal saludable</h2>
+    <div id="contenidoPlanAutomatico" class="plan-semanal" style="margin-top: 1.5rem;"></div>
+    <button class="btn back" onclick="volverAlMenu()" style="margin-top: 2rem">⬅️ Volver al Menú</button>
+  </div>
+
+</body>
+</html>
